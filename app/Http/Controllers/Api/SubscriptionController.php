@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SubscribeWebsiteRequest;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Website;
 use Illuminate\Http\Request;
 
@@ -26,6 +28,7 @@ class SubscriptionController extends Controller
 
         $data = [
             'error' => [],
+            'statusCode' => 201,
             'text' => 'Post created successfully'
         ];
 
@@ -45,9 +48,25 @@ class SubscriptionController extends Controller
 
         $data = [
             'error' => [],
+            'statusCode' => 201,
             'text' => 'Website created successfully'
         ];
 
         return json_encode($data);
-    }   
+    }
+
+    // subscribe a  website
+    public function subscribe(SubscribeWebsiteRequest $request)
+    {
+        $user = User::findOrFail($request->user_id);
+        $user->website()->sync(['website_id' => $request->website_id]);
+
+        $data = [
+            'error' => [],
+            'statusCode' => 200,
+            'text' => 'Websire subscribed successfully',
+        ];
+
+        return json_encode($data);
+    }
 }

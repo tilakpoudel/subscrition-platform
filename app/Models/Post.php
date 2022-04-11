@@ -10,15 +10,15 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'name',
         'description',
         'website_id',
+        'slug',
     ];
 
     public function user()
     {
-       return $this->belongsTo(User::class);
+       return $this->belongsToMany(User::class);
     }
 
     public function website()

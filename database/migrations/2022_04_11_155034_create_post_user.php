@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class SubscriberWebsite extends Migration
+class CreatePostUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class SubscriberWebsite extends Migration
      */
     public function up()
     {
-        Schema::create('user_website', function (Blueprint $table) {
-            $table->id();
+        Schema::create('post_user', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('website_id');
+            $table->unsignedBigInteger('post_id');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class SubscriberWebsite extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_website');
+        Schema::dropIfExists('post_user');
     }
 }
