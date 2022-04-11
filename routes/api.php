@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\SubscriptionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,19 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/test', function (Request $request) {
+    return 'ok';
+});
+
+// create a post
+Route::post('/store-post', [SubscriptionController::class, 'storePost']);
+
+// create a website
+Route::post('/store-website', [SubscriptionController::class, 'storeWebsite']);
+
+// create a post
+Route::post('/store-post', [SubscriptionController::class, 'storePost']);
+
+// subscribe a website
+Route::post('/subscribe', [SubscriptionController::class, 'subscribe']);
