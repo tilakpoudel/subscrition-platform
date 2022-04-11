@@ -26,10 +26,13 @@ class SendPublishedPostNotification
      */
     public function handle(PostPublished $event)
     {
-        $website = $this->event->website;
+        $post = $event->post;
+        $website = $post->website;
 
-        $subscribers = $website->users;
+        $subscribers = $website->users();
 
-        dd($subscribers);
+        foreach ($subscribers as $subscriber) {
+            
+        }
     }
 }

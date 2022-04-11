@@ -47,7 +47,7 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    public function webites()
+    public function websites()
     {
         return $this->belongsToMany(Website::class);
     }

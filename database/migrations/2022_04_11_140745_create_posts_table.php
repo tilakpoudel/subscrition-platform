@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->unsignedBigInteger('website_id');
+            $table->dateTime('published_at')->nullable();
             $table->timestamps();
         });
     }

@@ -16,7 +16,6 @@ class CreatePostUser extends Migration
         Schema::create('post_user', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('post_id');
-            $table->dateTime('published_at')->nullable();
             $table->timestamps();
         });
     }

@@ -34,3 +34,6 @@ Route::post('/store-post', [SubscriptionController::class, 'storePost']);
 
 // subscribe a website
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe']);
+
+// publish a post
+Route::get('/publish-post/{post}', [SubscriptionController::class, 'publishPost']);

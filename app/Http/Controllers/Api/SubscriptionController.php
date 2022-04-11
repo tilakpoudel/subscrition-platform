@@ -7,6 +7,7 @@ use App\Http\Requests\SubscribeWebsiteRequest;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Website;
+use App\Providers\PostPublished;
 use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
@@ -59,14 +60,30 @@ class SubscriptionController extends Controller
     public function subscribe(SubscribeWebsiteRequest $request)
     {
         $user = User::findOrFail($request->user_id);
-        $user->website()->sync(['website_id' => $request->website_id]);
+        $user->websites()->sync(['website_id' => $request->website_id]);
 
         $data = [
             'error' => [],
             'statusCode' => 200,
-            'text' => 'Websire subscribed successfully',
+            'text' => 'Website subscribed successfully',
         ];
 
         return json_encode($data);
+    }
+
+    public function publishPost(Post $post)
+    {
+        $post->published_at = now();
+        $post->save();
+
+        event(new PostPublished($post));
+
+        $data = [
+            'error' => [],
+            'statusCode' => 200,
+            'text' => 'Post Published',
+        ];
+
+        return json_encode($data); 
     }
 }

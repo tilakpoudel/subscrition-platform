@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Validation\Rule;
 
 class SubscribeWebsiteRequest extends FormRequest
 {
@@ -15,7 +14,7 @@ class SubscribeWebsiteRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +25,7 @@ class SubscribeWebsiteRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => ['required'. 'numeric'],
+            'user_id' => ['required', 'numeric'],
             'website_id' => ['required', 'numeric'],
         ];
     }
