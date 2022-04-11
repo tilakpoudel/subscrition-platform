@@ -13,7 +13,7 @@ class Post extends Model
         'name',
         'description',
         'website_id',
-        'slug',
+        'published_at',
     ];
 
     public function user()
